@@ -1,3 +1,3 @@
 export default function FavoritePage(props) {
-  return <div>Favoirte Page</div>;
+  return <div>Favorite Page</div>;
 }
