@@ -22,7 +22,7 @@ export default function NewMeetupForm(props) {
       description: enteredDescription,
     };
 
-    console.log(meetupData);
+    props.onAddMeetup(meetupData);
   }
   return (
     <Card>
