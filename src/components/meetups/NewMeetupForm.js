@@ -3,40 +3,65 @@ import Card from "../ui/Card";
 import classes from "./NewMeetupForm.module.css";
 
 export default function NewMeetupForm(props) {
-  const titleInputRef = useRef();
-  const imageInputRef = useRef();
+  const nameInputRef = useRef();
+  const lastNameInputRef = useRef();
   const addressInputRef = useRef();
-  const descriptionInputRef = useRef();
+  const genderInputRef = useRef();
+  const citizenIdInputRef = useRef();
+  const birthDateInputRef = useRef();
 
   function submitHandler(event) {
     event.preventDefault();
-    const enteredTitle = titleInputRef.current.value;
-    const enteredImage = imageInputRef.current.value;
+    const enteredName = nameInputRef.current.value;
+    const enteredLastName = lastNameInputRef.current.value;
     const enteredAddress = addressInputRef.current.value;
-    const enteredDescription = descriptionInputRef.current.value;
+    const enteredGender = genderInputRef.current.value;
+    const enteredCitizenNumber = citizenIdInputRef.current.value;
+    const enteredBirthDate = birthDateInputRef.current.value;
 
     const meetupData = {
-      title: enteredTitle,
-      image: enteredImage,
-      address: enteredAddress,
-      description: enteredDescription,
+      name: enteredName,
+      lastName: enteredLastName,
+      addressID: enteredAddress,
+      gender: enteredGender,
+      citizenNumber: enteredCitizenNumber,
+      status: true,
+      birthDate: enteredBirthDate,
     };
 
+    console.log(meetupData);
     props.onAddMeetup(meetupData);
   }
   return (
     <Card>
       <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label htmlFor="title">Meetup title</label>
-          <input type="text" required id="title" ref={titleInputRef}></input>
+          <label htmlFor="name">Name</label>
+          <input type="text" required id="name" ref={nameInputRef}></input>
         </div>
+
         <div className={classes.control}>
-          <label htmlFor="image">Meetup image</label>
-          <input type="url" required id="image" ref={imageInputRef}></input>
+          <label htmlFor="lastName">Last name</label>
+          <input
+            type="text"
+            required
+            id="lastName"
+            ref={lastNameInputRef}
+          ></input>
         </div>
+
         <div className={classes.control}>
-          <label htmlFor="address">Meetup address</label>
+          <label htmlFor="birthDate">Date of birth</label>
+          <input
+            type="date"
+            required
+            id="birthDate"
+            ref={birthDateInputRef}
+          ></input>
+        </div>
+
+        <div className={classes.control}>
+          <label htmlFor="address">Address</label>
           <input
             type="text"
             required
@@ -44,14 +69,20 @@ export default function NewMeetupForm(props) {
             ref={addressInputRef}
           ></input>
         </div>
+
         <div className={classes.control}>
-          <label htmlFor="description">Meetup description</label>
-          <textarea
+          <label htmlFor="gender">Gender</label>
+          <input required id="gender" ref={genderInputRef}></input>
+        </div>
+
+        <div className={classes.control}>
+          <label htmlFor="citizenNumber">Citizen ID</label>
+          <input
+            type="text"
             required
-            rows="5"
-            id="description"
-            ref={descriptionInputRef}
-          ></textarea>
+            id="citizenNumber"
+            ref={citizenIdInputRef}
+          ></input>
         </div>
         <div className={classes.actions}>
           <button>Add Meetup</button>

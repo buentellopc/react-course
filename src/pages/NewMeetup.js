@@ -6,16 +6,14 @@ export default function NewMeetupPage(props) {
   const history = useHistory();
 
   function addMeetupHandler(meetupData) {
-    fetch(
-      "https://react-getting-started-54585-default-rtdb.firebaseio.com/meetups.json",
-      {
-        method: "POST",
-        body: JSON.stringify(meetupData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    ).then(() => {
+    fetch("http://localhost:9092/v1/publish/user", {
+      method: "POST",
+      body: JSON.stringify(meetupData),
+      // mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
       history.replace("/");
     });
   }
