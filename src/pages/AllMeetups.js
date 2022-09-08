@@ -24,28 +24,28 @@ const DUMMY_DATA = [
 
 export default function AllMeetupsPage(props) {
   const [isLoading, setIsLoading] = useState(true);
-  const [loadedMeetups, setLoadedMeetups] = useState([]);
+  const [loadedUsers, setLoadedUsers] = useState([]);
 
   useEffect(() => {
-    fetch(
-      "https://react-getting-started-54585-default-rtdb.firebaseio.com/meetups.json"
-    )
+    fetch("http://localhost:9095/users")
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        const meetups = [];
-        for (const key in data) {
-          const meetup = {
-            id: key,
-            ...data[key],
+        const users = [];
+        for (const piece of data) {
+          const user = {
+            ...piece,
           };
-          meetups.push(meetup);
+          users.push(user);
         }
         setIsLoading(false);
-        setLoadedMeetups(meetups);
+        setLoadedUsers(users);
       });
   }, []);
+
+  console.log("hihihihi");
+  console.log("this are the users", loadedUsers);
 
   if (isLoading) {
     return (
@@ -58,7 +58,7 @@ export default function AllMeetupsPage(props) {
   return (
     <section>
       <h1>All Mettups Page</h1>
-      <MeetupList meetups={loadedMeetups} />
+      <MeetupList users={loadedUsers} />
     </section>
   );
 }

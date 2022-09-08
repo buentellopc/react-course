@@ -25,13 +25,10 @@ export default function MeetupItem(props) {
   return (
     <li className={classes.item}>
       <Card>
-        <div className={classes.image}>
-          <img src={props.image} alt={props.title}></img>
-        </div>
         <div className={classes.content}>
-          <h3>{props.title}</h3>
-          <address>{props.address}</address>
-          <p>{props.description}</p>
+          <h3>
+            {props.name} {props.lastName}
+          </h3>
         </div>
         <div className={classes.actions}>
           <button onClick={toggleFavoriteStatusHandler}>
